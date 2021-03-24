@@ -6,10 +6,15 @@ PROJECTNAME := $(shell basename "$(PWD)")
 install:
 	go install
 
-## run: Run all unit-test
-run:
+## test: Run all unit-test
+test:
 	@echo "  >  build and run application..."
 	go test -v -race -timeout 30s ./...
+
+## test: Run all unit-test
+cover:
+	@echo "  >  build and run application..."
+	go test -v -cover ./...
 
 all: help
 help: Makefile
