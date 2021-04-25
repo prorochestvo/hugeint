@@ -6,14 +6,19 @@ PROJECTNAME := $(shell basename "$(PWD)")
 install:
 	go install
 
-## test: Run all unit-test
+## test: Run all unit-tests
 test:
-	@echo "  >  build and run application..."
+	@echo "  >  run unit-tests..."
 	go test -v -race -timeout 30s ./...
 
-## test: Run all unit-test
+## bench: Run all benchmark-tests
+bench:
+	@echo "  >  run benchmarks..."
+	go test -benchmem -bench=. ./...
+
+## cover: Check test coverage
 cover:
-	@echo "  >  build and run application..."
+	@echo "  >  check coverage..."
 	go test -v -cover ./...
 
 all: help

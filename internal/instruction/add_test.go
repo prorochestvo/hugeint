@@ -2,8 +2,6 @@ package instruction
 
 import "testing"
 
-type funcAdd func(uint32, uint32) (uint32, uint32)
-
 func TestAdd(t *testing.T) {
 	testAdd(t, Add)
 }
@@ -23,6 +21,8 @@ func BenchmarkAdd_V1_FFFFFFFF_and_FFFFFFFF(b *testing.B) {
 func BenchmarkAdd_V2_FFFFFFFF_and_FFFFFFFF(b *testing.B) {
 	benchmarkAdd(b, addV2, 0xFFFFFFFF, 0xFFFFFFFF)
 }
+
+type funcAdd func(uint32, uint32) (uint32, uint32)
 
 func testAdd(t *testing.T, f funcAdd) {
 	checkAdd(t, f, 0xFFFFFFFF, 0xFFFFFFFF)

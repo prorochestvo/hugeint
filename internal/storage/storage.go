@@ -51,8 +51,8 @@ func (s *Storage) Pop() *Node {
 		return nil
 	}
 
-  s.lock.Lock()
-  defer s.lock.Unlock()
+	s.lock.Lock()
+	defer s.lock.Unlock()
 
 	var result *Node = nil
 	// erase last pointer
@@ -77,8 +77,8 @@ func (s *Storage) Push(n uint32) *Node {
 
 	node := s.End(0)
 
-  s.lock.Lock()
-  defer s.lock.Unlock()
+	s.lock.Lock()
+	defer s.lock.Unlock()
 
 	// make new head pointer
 	if node == nil {

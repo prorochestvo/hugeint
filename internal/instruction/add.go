@@ -2,7 +2,7 @@ package instruction
 
 // Add ...
 func Add(a, b uint32) (hDWord, lDWord uint32) {
-  return addV2(a, b)
+	return addV2(a, b)
 }
 
 func addV1(a, b uint32) (hDWord, lDWord uint32) {
@@ -139,11 +139,11 @@ func addV1(a, b uint32) (hDWord, lDWord uint32) {
 
 func addV2(a, b uint32) (hDWord, lDWord uint32) {
 	for bit := uint32(bit01 & 0xFFFFFFFF); bit > 0; bit <<= 1 {
-    hDWord <<= 1
+		hDWord <<= 1
 		l, r := a&bit, b&bit
 		lDWord |= r ^ l ^ hDWord
-    hDWord = (r & l) | ((r | l) & hDWord)
+		hDWord = (r & l) | ((r | l) & hDWord)
 	}
-  hDWord >>= 31
+	hDWord >>= 31
 	return
 }
