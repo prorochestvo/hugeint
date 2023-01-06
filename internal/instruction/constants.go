@@ -1,0 +1,42 @@
+package instruction
+
+// 0101 ^ 1001 == 1100
+// 0101 & 1001 == 0001
+// 0101 | 1001 == 1101
+const (
+	bit01 uint32 = 0x00000001
+	bit02 uint32 = 0x00000002
+	bit03 uint32 = 0x00000004
+	bit04 uint32 = 0x00000008
+	bit05 uint32 = 0x00000010
+	bit06 uint32 = 0x00000020
+	bit07 uint32 = 0x00000040
+	bit08 uint32 = 0x00000080
+
+	bit09 uint32 = 0x00000100
+	bit10 uint32 = 0x00000200
+	bit11 uint32 = 0x00000400
+	bit12 uint32 = 0x00000800
+	bit13 uint32 = 0x00001000
+	bit14 uint32 = 0x00002000
+	bit15 uint32 = 0x00004000
+	bit16 uint32 = 0x00008000
+
+	bit17 uint32 = 0x00010000
+	bit18 uint32 = 0x00020000
+	bit19 uint32 = 0x00040000
+	bit20 uint32 = 0x00080000
+	bit21 uint32 = 0x00100000
+	bit22 uint32 = 0x00200000
+	bit23 uint32 = 0x00400000
+	bit24 uint32 = 0x00800000
+
+	bit25 uint32 = 0x01000000
+	bit26 uint32 = 0x02000000
+	bit27 uint32 = 0x04000000
+	bit28 uint32 = 0x08000000
+	bit29 uint32 = 0x10000000
+	bit30 uint32 = 0x20000000
+	bit31 uint32 = 0x40000000
+	bit32 uint32 = 0x80000000
+)

@@ -1,14 +1,20 @@
 package instruction
 
-// Add ...
-func Add(a, b uint32) (hDWord, lDWord uint32) {
-	return addV2(a, b)
+func AddV1(a, b uint32) (hDWord, lDWord uint32) {
+	for bit := bit01 & 0xFFFFFFFF; bit > 0; bit <<= 1 {
+		hDWord <<= 1
+		l, r := a&bit, b&bit
+		lDWord |= r ^ l ^ hDWord
+		hDWord = (r & l) | ((r | l) & hDWord)
+	}
+	hDWord >>= 31
+	return
 }
 
-func addV1(a, b uint32) (hDWord, lDWord uint32) {
+func AddV2(a, b uint32) (hDWord, lDWord uint32) {
 	l, r := a&bit01, b&bit01
 	lDWord |= r ^ l
-	hDWord = ((r & l) | ((r | l) & hDWord)) << 1 // if (l > 0 && r > 0) || ((l > 0 || r > 0) && hDWord > 0) then hDWord = bit01 << 1
+	hDWord = ((r & l) | ((r | l) & hDWord)) << 1
 
 	l, r = a&bit02, b&bit02
 	lDWord |= r ^ l ^ hDWord
@@ -134,16 +140,5 @@ func addV1(a, b uint32) (hDWord, lDWord uint32) {
 	lDWord |= r ^ l ^ hDWord
 	hDWord = ((r & l) | ((r | l) & hDWord)) >> 31
 
-	return
-}
-
-func addV2(a, b uint32) (hDWord, lDWord uint32) {
-	for bit := uint32(bit01 & 0xFFFFFFFF); bit > 0; bit <<= 1 {
-		hDWord <<= 1
-		l, r := a&bit, b&bit
-		lDWord |= r ^ l ^ hDWord
-		hDWord = (r & l) | ((r | l) & hDWord)
-	}
-	hDWord >>= 31
 	return
 }
