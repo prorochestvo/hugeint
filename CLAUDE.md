@@ -54,5 +54,5 @@ before starting non-trivial work. Project delta:
 
 - **Gate:** `make test` — **currently red**, because `main` does not compile. A red gate here is
   pre-existing, not something your change broke; read "Current state" above before acting on it.
-- **Lenses:** standard three.
+- **Lenses:** standard set — see `pipeline:working-agreement`, which includes lens O.
 - **Branching:** standard (`type/<issue>-<slug>`, PR into `main`).
