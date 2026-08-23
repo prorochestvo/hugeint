@@ -1,10 +1,8 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with code in this repository.
-
-Conventions (style, declaration order, test structure, error contract, code
-organization) come from the `stack-go` plugin skills — this file holds only what is
-specific to THIS project.
+Generic Go conventions (style, declaration order, test structure, godoc, error discipline,
+build hygiene, organisation) come from the `stack-go` plugin skills and are not restated
+anywhere in this repo.
 
 ## What this is
 
@@ -51,18 +49,10 @@ Everything is under `internal/`; there is no importable public API on `main` yet
 
 ## Working agreement
 
-All non-trivial work follows the plan-first pipeline:
+Plan-first pipeline; the canonical procedure is the `pipeline:working-agreement` skill — load it
+before starting non-trivial work. Project delta:
 
-1. **Plan** — the `architect` agent writes `plans/NNN-slug.md` (via the
-   `pipeline:new-plan` skill). No source edits before a plan exists.
-2. **Implement** — the `engineer` agent executes the plan's tasks with tests.
-3. **Review** — three `reviewer` agents in parallel in ONE message, each naming its
-   lens (A: correctness & tests, B: security & operations, C: performance &
-   architecture). The post-fix re-review is ONE solo reviewer scoped to changed lines.
-4. **Gate** — `make test` must be green before review; a red tree goes to the
-   `testdoctor` agent first. (The repo is currently red — see above.)
-5. **Complete** — merge the three reports, resolve every P0/P1, then move the plan via
-   the `pipeline:complete-plan` skill.
-
-Plans live in `plans/` (active), `plans/completed/` (`YYMMDD.NNNN.slug.md`),
-`plans/history/` (abandoned/superseded). One plan per concern.
+- **Gate:** `make test` — **currently red**, because `main` does not compile. A red gate here is
+  pre-existing, not something your change broke; read "Current state" above before acting on it.
+- **Lenses:** standard three.
+- **Branching:** standard (`type/<issue>-<slug>`, PR into `main`).
